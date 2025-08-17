@@ -1,20 +1,25 @@
-import React from 'react'
-import { useEffect, useState } from "react";
-import API from "./api/api";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/loginPage";
+
+// import ForgotPasswordForm from "./pages/ForgotPasswordForm";
+// import ResetPasswordForm from "./pages/ResetPasswordForm";
+// import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    API.get("/")
-      .then((res) => setMessage(res.data.message))
-      .catch((err) => console.error(err));
-  }, []);
-
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold">{message}</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/forgot-password" element={<ForgotPasswordForm />} /> */}
+        {/* <Route path="/reset-password/:token" element={<ResetPasswordForm />} /> */}
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+      </Routes>
+    </Router>
   );
 }
 
